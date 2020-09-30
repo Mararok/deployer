@@ -39,6 +39,20 @@ class HostTest extends TestCase
         );
     }
 
+    public function testHostWithUserFromConfig()
+    {
+        $host = new Host('host');
+        $host->getConfig()->set("deploy_user", function () {
+            return "test_user";
+        });
+        $host
+            ->hostname('host')
+            ->user('{{deploy_user}}')
+            ->port(22);
+
+        self::assertEquals('test_user@host', "$host");
+    }
+
     public function testHostWithCustomPort()
     {
         $host = new Host('host');

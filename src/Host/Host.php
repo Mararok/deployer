@@ -64,7 +64,7 @@ class Host
      */
     public function __toString()
     {
-        $user = empty($this->user) ? '' : "{$this->user}@";
+        $user = empty($this->getUser()) ? '' : "{$this->getUser()}@";
         return "$user{$this->realHostname}";
     }
 
